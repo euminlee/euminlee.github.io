@@ -7,11 +7,11 @@ body {
 
 @font-face{
     font-family: calibreMedItalic;
-    src: url('../font/Calibre-MediumItalic.otf');
+    src: url('../Calibre-MediumItalic.otf');
 }
 @font-face { 
     font-family: calibreReg;
-    src: url('../font/Calibre-Regular.otf');
+    src: url('../Calibre-Regular.otf');
 }
 
 h1 {
