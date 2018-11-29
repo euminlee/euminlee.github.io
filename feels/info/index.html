@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <link rel="stylesheet" type="text/css" href="style.css">
+   <head>
+      <meta charset="utf-8">
+      <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Poppins:100" rel="stylesheet">
+      <script src="processing.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+      <title>
+         I FEEL...
+      </title>
+   </head>
+   <body>
+      <script type="application/processing">
+         float d, r, grow;
+         int numCircles;
+         int num, frames;
+         float theta;
+         float origD;
+         
+         void setup() {
+           size(screen.width, screen.height);
+           d = 400;
+           origD = d;
+           numCircles = 8;
+           grow = 0.2;
+         
+           num = 500;
+           frames = 250;
+         }
+         
+         void draw() {
+           background(31);
+           noStroke();
+         
+           pushMatrix();
+           translate(width/2, height/2-50);
+           rotate(radians(frameCount/4));
+         
+           fill(153, 153, 255, 20);
+           for (int i = 0; i < numCircles*2; i++) {
+             ellipse(0, -d/2, d+60, d+60);
+             rotate(radians(45));
+           }
+           fill(150, 150, 255, 80);
+         
+           for (int i = 0; i < numCircles; i++) {
+             ellipse(0, -d/2, d, d);
+             rotate(radians(45));
+           }
+           popMatrix();
+           d -= grow;
+         
+           if (d <= origD-50) grow *= -1;
+           if (d >= origD) grow *= -1;
+         }
+      </script>
+      <canvas id="sketch"> </canvas>
+      <div id="about"><a href="../index.html"><img src="../img/previous.png" alt = "info"></a></div>
+      <div id="box"> </div>
+      <div id="container">
+         <div id="text">
+            <h1>ABOUT</h1>
+            <p>"I FEEL", inspired by 2016.makemepulse, is my personal visualization of anxiety — an emotion that I personally experience every day, an emotion experienced by millions of others. This visualization is then juxtaposed against "BREATHE", a visual opposite of the anxiety sketch. The slowly pulsing orbs behind the typography (one of which is depicted in the background of this page) is inspired by the breathe app on the Apple Watch, and is meant to be a visually calming experience, one that you can breathe in tandem with. All sketches were created in Processing, and many thanks to the Type + Code textbook by Yeohyun Ahn and Viviana Cordova for enlightening me with different ways to creatively code typography. Thank you for visiting, and I hope this helps you remember to breathe too.</p>
+         </div>
+      </div>
+   </body>
+</html>
