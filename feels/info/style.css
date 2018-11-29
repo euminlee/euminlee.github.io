@@ -1,0 +1,73 @@
+
+body {
+    background-color: #000;
+    color: white;
+    font-family: 'calibreReg', sans-serif;
+}
+
+@font-face{
+    font-family: calibreMedItalic;
+    src: url('../font/Calibre-MediumItalic.otf');
+}
+@font-face { 
+    font-family: calibreReg;
+    src: url('../font/Calibre-Regular.otf');
+}
+
+h1 {
+    font-family: 'calibreMedItalic', sans-serif;
+}
+
+#about {
+    position: fixed;
+    top: 1.5%;
+    right: 1.5%;
+    z-index: 10;
+    transition: all 0.2s ease-in-out;
+}
+
+#sketch {
+    position: fixed;
+    z-index: 0;
+}
+
+#about img{
+    float: right;
+    width: 30px;
+    transition: all 0.2s ease-in-out;
+}
+
+#about img:hover {
+    width: 33px;
+    transition: all 0.2s ease-in-out;
+}
+
+#box {
+    padding: 30px;
+    opacity: 0.3;
+    border-radius: 50px;
+    position: fixed;
+    background-color: #000;
+    z-index: 0;
+    width: 30%;
+    height: 27%;
+    margin-top: 20%;
+    margin-left: 33%;
+}
+
+#container {
+    text-align: center;
+    padding: 30px;
+    border-radius: 50px;
+    position: fixed;
+    z-index: 1;
+    width: 30%;
+    height: auto;
+    margin: auto;
+    margin-top: 18.7%;
+    margin-left: 33%;
+}
+
+#text {
+    opacity: 1;
+}
