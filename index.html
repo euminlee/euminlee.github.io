@@ -1,47 +1,233 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<link rel="stylesheet" type="text/css" href="/css/main.css">
-<head>
-    <meta charset="utf-8">
-    
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100" rel="stylesheet">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-    <title>
-        Eumin's Index Page
-    </title>
-</head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ugly Media</title>
+        <style>
+            body {
+                background-color: #000;
+            }
+            #landing {
+            /*                width: 300px;*/
+                background-color: #222;
+                margin-top: 30%;
+                border-radius: 15px;
+                padding: 40px;
+            }
+            #landing img {
+                width: 400px;
+            }
+            .centered {
+                margin: 0 auto;
+            }
+            #main-caption {
+                text-align: center;
+                color: #BCCC89;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            .row {
+                display: -ms-flexbox; /* IE10 */
+                display: flex;
+                -ms-flex-wrap: wrap; /* IE10 */
+                flex-wrap: wrap;
+                margin-left: 5%;
+                margin-top: 5%;
+            }
+            .column {
+                flex: 23%;
+                max-width: 23%;
+                padding: 8px;
+            }
+            .column img {
+/*                margin-top: 10px;*/
+                vertical-align: middle;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            .div-img {
+                width: 100%;
+            }
+            @media screen and (max-width: 800px) {
+                .column {
+                    -ms-flex: 50%;
+                    flex: 50%;
+                    max-width: 50%;
+                }
+                #landing img {
+                    width: 200px;
+                }
+            }
 
-<body>
-    <div id="half"></div>
-    
-    <div id="nav">
-    <ul>
-        <li><a href="https://euminlee.github.io/weeklies.html">WEEKLIES</a></li>
-        <li><a href="#">ABOUT</a></li>
-        <li><a href="https://euminlee.github.io">HOME</a></li>
-    </ul>
-    </div>
-    
-    <div id="container">
-        <div id="name">EUMIN LEE</div>
-        <div id="bar"></div>
-        <div id="sub">IML 400 INDEX PAGE</div>
-    </div>
-    
- 
-
-    
-
-   <!-- <h2>portfolio</h2> -->
-    
-    <!--make about pop-up! make sure to include nav/back button in assignments pages -->
-    
-    <!--
-    <div id="home"><a href="index.html">home</a></div>
-    <div id="about"><a href="About/index.html">about</a></div>
-    <div id="links"><a href="Assignments_mainpage/index.html">links</a> </div>
-
--->
+            @media screen and (max-width: 600px) {
+                .column {
+                    -ms-flex: 100%;
+                    flex: 100%;
+                    max-width: 100%;
+                }
+                #landing img {
+                    width: 120px;
+                }
+            }
+            figcaption {
+                background-color: white;
+                padding: 15px;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+            .user {
+                color: cornflowerblue;
+            }
+            .post-date {
+                font-size: 10px;
+                margin-top: 10px;
+                color: darkolivegreen;
+            }
+            #intro {
+                color: #666;
+                text-align: center;
+            }
+            a:link {
+                color: black;
+            }
+            a:visited {
+                color: #aaa;
+            }
+            a:hover {
+                color: cornflowerblue;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="col-5 col-md-5 col-sm-12 centered">
+                <div id="landing">
+                    <img class="mx-auto d-block" src="img/ugly-media-logo.png" alt="logo">
+                    <div class="col">
+                        <span id="main-caption">
+                            <p>Welcome to Ugly Media. We aim to reimagine curated visual media on social platforms as aural space.</p>
+                        </span>
+                        <span id="intro">
+                            <p>Enter an Instagram #hashtag to see the most recent 40 posts with that hashtag. Wait ~10 seconds for the photos to appear.</p>
+                        </span>
+                    </div>
+                    <form class="col-12" id="search">
+                        <div class="form-row justify-content-center">
+                            <div class="mt-4 col-sm-6 col-md-4 col-lg-6">
+                                <input type="text" id="input" class="form-control" placeholder="Search hashtag...">
+                            </div>
+                            <div class="col mt-4 col-sm-auto">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row" id="img-row">
+                <div class="column" id="img-col">
+                </div>
+                <div class="column" id="img-col-2">
+                </div>
+                <div class="column" id="img-col-3">
+                </div>
+                <div class="column" id="img-col-4">
+                </div>
+            </div>
+        </div>
+        <script>
+            document.querySelector('#search').onsubmit = function() {
+                var input = document.querySelector('#input').value.trim();
+                console.log(input);
+                
+                if (input.length > 0) {
+                    var url = 'https://api.social-searcher.com/v2/search?q=' + input + '&type=photo&network=instagram&limit=40&lang=en&key=d4c8cda43a36b630ffcde120be40a196';
+                    
+                    console.log(url);
+                } else if (input.length == 0) {
+                    alert('Please enter a hashtag.')
+                }
+                
+                ajax(url, display);
+                
+                document.querySelector('#input').value = '';
+                return false;
+            }
+            
+            
+            function ajax (url, callbackFunction) {
+                //create XHR object responsible for AJAX calls
+                var xhr = new XMLHttpRequest();
+                //PARAMETERS:  open(method [GET/POST], url)
+                xhr.open('GET', url);
+            
+                // .onload triggered when response is recieved
+                xhr.onload = function() {
+                    if (xhr.status == 200) {
+                        //successful response
+                        callbackFunction(JSON.parse(xhr.responseText));
+                    } else {
+                        //error
+                        console.log(xhr);
+                        alert('shoot, ajax error');
+                    }
+                }
+                //send the request
+                xhr.send();
+            }
+            
+            function display(data) {
+                console.log(data);
+                
+                document.querySelector('#img-col').innerHTML = '';
+                document.querySelector('#img-col-2').innerHTML = '';
+                document.querySelector('#img-col-3').innerHTML = '';
+                document.querySelector('#img-col-4').innerHTML = '';
+                
+                for (var i = 0; i < data.posts.length; i++) {
+                    var divRow = document.createElement('div');
+                    var divCol = document.createElement('div');
+                    var divDate = document.createElement('div');
+                    var divUser = document.createElement('div');
+                    var img = document.createElement('img');
+                    var fig = document.createElement('figure');
+                    var figCaption = document.createElement('figcaption');
+                    var ahref = document.createElement('a');
+                    
+                    ahref.href = data.posts[i].url;
+                    ahref.target = '_blank';
+                    ahref.innerHTML = data.posts[i].text;
+                    
+                    img.classList.add('div-img');
+                    img.src = data.posts[i].image;
+                                        
+                    divDate.innerHTML = data.posts[i].posted;
+                    
+                    if (i <= 9) {
+                        document.querySelector('#img-col').appendChild(fig);
+                        
+                    } else if (i > 9 && i <= 19) {
+                        document.querySelector('#img-col-2').appendChild(fig);
+                        
+                    } else if (i > 19 && i <= 29) {
+                        document.querySelector('#img-col-3').appendChild(fig);
+                        
+                    } else if (i > 29 && i <= 39) {
+                        document.querySelector('#img-col-4').appendChild(fig);                        
+                    }
+                    
+                    divDate.classList.add('post-date');
+                    
+                    fig.appendChild(img);
+                    fig.appendChild(figCaption);
+                    figCaption.appendChild(ahref);
+                    figCaption.appendChild(divDate);
+                    
+                }
+            }
+        </script>
     </body>
 </html>
